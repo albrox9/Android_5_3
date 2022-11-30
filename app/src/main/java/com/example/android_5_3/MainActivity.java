@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Toast.makeText(this, data.getStringExtra("contestacion"), Toast.LENGTH_LONG).show();
+        String nombre = data.getStringExtra("contestacion").toString();
+        Toast.makeText(this, nombre, Toast.LENGTH_LONG).show();
     }
 }

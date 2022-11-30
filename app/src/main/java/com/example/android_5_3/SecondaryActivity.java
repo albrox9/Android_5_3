@@ -16,6 +16,7 @@ public class SecondaryActivity extends AppCompatActivity {
     RadioButton rb2;
     RadioButton rb3;
     RadioButton rb4;
+    Pelicula p = new Pelicula();
 
 
     @Override
@@ -39,27 +40,31 @@ public class SecondaryActivity extends AppCompatActivity {
 
     }
 
-    private String actualizar() {
+    private Pelicula actualizar() {
 
         String mensaje = "";
+        int anio = 0;
 
         switch (rg.getCheckedRadioButtonId()){
-            case R.id.rb1: mensaje = "2001: Una odisea del espacio"; break;
-            case R.id.rb2: mensaje = "El señor de los anillos"; break;
-            case R.id.rb3: mensaje = "La lista de Schindler"; break;
-            case R.id.rb4: mensaje = "Forrest Gump"; break;
+            case R.id.rb1: anio= 1968; mensaje = "2001: Una odisea del espacio"; break;
+            case R.id.rb2: anio= 2001; mensaje = "El señor de los anillos"; break;
+            case R.id.rb3: anio= 1993; mensaje = "La lista de Schindler"; break;
+            case R.id.rb4: anio= 1994; mensaje = "Forrest Gump"; break;
         }
 
-        return mensaje;
+        p.setNombre(mensaje);
+        p.setAnio(anio);
+        System.out.println(p.getNombre().toString() + " " + String.valueOf(p.getAnio()).toString());
+        return p;
     }
 
     public void responder(View view) {
 
-        String mensaje = actualizar() + " " + mensajeRecibido();
+        String mensaje = p.toString() + " " + mensajeRecibido();
 
 
         Intent i = new Intent(this, MainActivity.class);
-        i.putExtra("contestacion",  mensaje);
+        i.putExtra("contestacion", mensaje);
         setResult(RESULT_OK, i);
         finish();
     }
